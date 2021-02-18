@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-int stack[20],top=0;
+int stack[20],top=-1;
 
 void push(int number) {
 	if (top == 20){
