@@ -1,30 +1,35 @@
 #include<iostream>
 using namespace std;
 
-int stack[20],top=-1;
+int stack[20]; //stack size is not fixed, it depends on your application
+int top=-1;	//Initially top is not pointing to any element, hence -1
 
 void push(int number) {
-	if (top == 20){
-		cout << "Stack overflow";
-		exit(0);
+	if (top == 19){
+		cout << "Stack overflow";	//No more space for the elements to enter the stack
 	}
-	stack[top++] = number;
-	cout << number << " pushed into the stack" << endl;
+	else {
+		top += 1;
+		stack[top] = number;
+		cout << number << " pushed into the stack" << endl;
+	}
 }
 
 int pop() {
 	int n;
 	if (top == -1) {
-		cout << "Stack Underflow";
-		exit(0);
+		cout << "Stack Underflow";	//No elements in the stack
 	}
-	n = stack[top--];
+	else {
+		n = stack[top];
+		top -= 1;
+	}
 	return n;
 }
 
 void view() {
 	int i;
-	for (i = 0; i < top; i++) {
+	for (i = 0; i <=top; i++) {
 		cout << stack[i] << endl;
 	}
 }
@@ -50,8 +55,14 @@ int main() {
 		case 2: number = pop();
 			cout << number << " was popped!" << endl;
 			break;
-		case 3: cout << "The elements in the stack are" << endl;
-			view();
+		case 3: 
+			if (top == -1) {
+				cout << "No elements in the stack" << endl;	//No elements in the stack
+			}
+			else {
+				cout << "The elements in the stack are" << endl;
+				view();
+			}
 			break;
 		case 4: exit(0);
 			break;
